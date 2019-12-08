@@ -16,8 +16,17 @@
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
         #todo-list              { margin-bottom:30px; }
+        #todo-add               { width: 450px; }
+        #category-add { width: 650px ;}
+        h3 {
+          font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+          background-color: #eee;
+          border-radius: 2px;
+          border: 1px solid #ccc;
+          text-align: center;
+          padding: 10px;
+        }
     </style>
-
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
@@ -30,9 +39,42 @@
 
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+            <h1>//TODO Or Not <span class="label label-info">{{ todos.length }}</span></h1>
+        </div>
+        <div class="text-center">
+          <!-- Category LIST -->
+          <form>
+          <div class="row px-b-10" ng-repeat="rows in categoriesChunked">
+
+            <div class="col-lg-3" ng-repeat="category in rows">
+              <a href="#" ng-click="filterByCategory(category._id)"><h3>{{ category.text }}</h3></button>
+            </div>
+
+          </div>
+            <a href="#" ng-click="filterByCategory()"><h3>All</h3></button>
+        </form>
         </div>
 
+        <!-- FORM TO CREATE TODOS -->
+        <div id="todo-form" class="row">
+            <div class="col-md-8 col-sm-offset-2 text-center">
+                <form class="form-inline">
+                  <!-- TODO: style category dropdown -->
+                  <select ng-model="todoData.category">
+                    <option value="">-- Please select a category --</option>
+                    <option ng-repeat="x in categories" value="{{ x._id }}">{{ x.text }}</option>
+                  </select>
+
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" id="todo-add" class="form-control input-lg text-center" placeholder="Add //TODO here" ng-model="todoData.text">
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                </form>
+            </div>
+        </div>
         <!-- TODO LIST -->
         <div id="todo-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
@@ -46,22 +88,25 @@
 
             </div>
         </div>
-
-        <!-- FORM TO CREATE TODOS -->
-        <div id="todo-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <form>
+        <!-- add category -->
+        <div id="category-form" class="row">
+            <div class="col-md-8 col-sm-offset-2 text-center">
+                <form class="form-inline">
                     <div class="form-group">
 
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+                        <input type="text" id="category-add" class="form-control input-lg text-center" placeholder="Add //Category here" ng-model="categoryData.text">
                     </div>
 
                     <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createCategory()">Add</button>
                 </form>
             </div>
         </div>
+
+
+
+
 
     </div>
 
