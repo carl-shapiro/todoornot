@@ -12,20 +12,9 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-        #todo-add               { width: 450px; }
-        #category-add { width: 650px ;}
-        h3 {
-          font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
-          background-color: #eee;
-          border-radius: 2px;
-          border: 1px solid #ccc;
-          text-align: center;
-          padding: 10px;
-        }
+
     </style>
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
@@ -45,6 +34,7 @@
           <!-- Category LIST -->
           <form>
           <div class="row px-b-10" ng-repeat="rows in categoriesChunked">
+
 
             <div class="col-lg-3" ng-repeat="category in rows">
               <a href="#" ng-click="filterByCategory(category._id)"><h3>{{ category.text }}</h3></a>
@@ -76,16 +66,20 @@
             </div>
         </div>
         <!-- TODO LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-
+        <div id="todo-list" class="row" id="todo-list">
+            <div class="col-sm-8 col-sm-offset-2">
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="todo in todos">
-                    <label>
-                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-                    </label>
+                <div class="card" >
+                  <div class="card-body">
+                   <ul class="list-group list-group-flush">
+                     <li class="list-group-item" ng-repeat="todo in todos">
+                      {{ todo.text }}
+                      <!-- input type="checkbox" ng-click="deleteTodo(todo._id)" -->
+                      <img src="images/delete.png" id="delete-button" ng-click="deleteTodo(todo._id)" />  
+                     </li>
+                    </ul>
+                  </div>
                 </div>
-
             </div>
         </div>
         <!-- add category -->

@@ -74,8 +74,9 @@ app.post('/api/category', function(req, res) {
 
         // get and return all the todos after you create another
         Category.find(function(err, categories) {
-            if (err)
-                res.send(err)
+            if (err){
+              res.send(err);
+            }
             res.json(categories);
         });
     });
@@ -89,7 +90,6 @@ app.get('/api/categories', function(req, res) {
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
             res.send(err)
-
         res.json(categories); // return all todos in JSON format
     });
 });

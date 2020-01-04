@@ -26,6 +26,7 @@
     app.use(bodyParser.json());                                     // parse application/json
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
+    app.use(express.static(__dirname + '/assets'));
     require('./routes')(app);
 
     // listen (start app with node server.js)

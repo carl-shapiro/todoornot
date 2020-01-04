@@ -83,6 +83,8 @@ function mainController($scope, $http) {
       }
       $http.get(url)
           .success(function(data) {
+            console.log("This is some data");
+            console.log(data);
               $scope.todos = data;
               console.log(data);
           })
