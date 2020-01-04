@@ -1,0 +1,29 @@
+html                    { overflow-y:scroll; }
+body                    { padding-top:50px; }
+#todo-list              { margin-bottom:30px; }
+#todo-add               { width: 450px; }
+#category-add { width: 650px ;}
+h3 {
+  font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+  background-color: #eee;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+#todo-list{
+  padding-top:20px;
+  margin-bottom:0px;
+
+}
+
+.list-group-item:nth-child(odd){
+  background-color: #EEEEEE;
+}
+
+#delete-button{
+  height:25px;
+  float:right;
+
+}
